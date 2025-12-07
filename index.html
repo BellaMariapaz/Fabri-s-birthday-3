@@ -15,7 +15,7 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:'Poppins',sans-serif;
+      font-family: 'Poppins', 'Quicksand', 'Montserrat', sans-serif;
       background: radial-gradient(circle at 10% 10%,var(--rosa-1),var(--rosa-2));
       color:#4a1b2b;
       -webkit-font-smoothing:antialiased;
@@ -24,7 +24,7 @@
     }
 
     header{padding:36px 16px 6px}
-    h1{font-family:'Great Vibes',cursive;font-size:3.6rem;margin:0;color:var(--fuerte);text-shadow:0 8px 30px rgba(255,140,170,0.18)}
+    h1{font-family: 'Poppins', 'Quicksand', 'Montserrat', sans-serif;font-size:3.6rem;margin:0;color:var(--fuerte);text-shadow:0 8px 30px rgba(255,140,170,0.18)}
     p.lead{margin:6px 0 18px;color:#7a2a47;font-weight:600}
 
     /* CONTROLES */
@@ -57,7 +57,7 @@
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:50}
     .modal{background:white;border-radius:18px;padding:22px;max-width:520px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.35);transform:translateY(20px);opacity:0;transition:all .32s ease}
     .modal.show{transform:translateY(0);opacity:1}
-    .modal h2{font-family:'Great Vibes',cursive;color:var(--fuerte);margin:4px 0 6px}
+    .modal h2{font-family: 'Poppins', 'Quicksand', 'Montserrat', sans-serif;color:var(--fuerte);margin:4px 0 6px}
     .modal p{color:#4c2b36;line-height:1.6}
     .close-btn{background:transparent;border:0;font-weight:700;color:#b10045;position:absolute;right:14px;top:10px;font-size:1.1rem;cursor:pointer}
 
@@ -94,39 +94,37 @@
   <main>
     <!-- Carrusel 3D -->
     <section class="carousel-wrap">
-  <div class="carousel-3d" id="carousel3d">
-    <!-- pony central decorativo -->
-    <img class="center-pony" src="https://i.imgur.com/7H1G4xT.png" alt="pony">
-
-    <!-- items (fotos) SIN carpeta images/ -->
-    <div class="carousel-item" style="transform: rotate(0deg) translateX( -150px) rotate(0deg);">
-      <img src="IMG-20251204-WA0001.jpg" alt="foto1">
-    </div>
-    <div class="carousel-item" style="transform: rotate(72deg) translateX( -150px) rotate(-72deg);">
-      <img src="IMG-20250831-WA0077.jpg" alt="foto2">
-    </div>
-    <div class="carousel-item" style="transform: rotate(144deg) translateX( -150px) rotate(-144deg);">
-      <img src="IMG-20251204-WA0004.jpg" alt="foto3">
-    </div>
-    <div class="carousel-item" style="transform: rotate(216deg) translateX( -150px) rotate(-216deg);">
-      <img src="IMG-20251204-WA0003.jpg" alt="foto4">
-    </div>
-    <div class="carousel-item" style="transform: rotate(288deg) translateX( -150px) rotate(-288deg);">
-      <img src="IMG-20251006-WA0105.jpg" alt="foto5">
-    </div>
-  </div>
-</section>
-
+      <div class="carousel-3d" id="carousel3d">
+        <!-- pony central decorativo -->
+        <img class="center-pony" src="https://i.imgur.com/7H1G4xT.png" alt="pony">
+        <!-- items (fotos) -->
+        <div class="carousel-item" style="transform: rotate(0deg) translateX( -150px) rotate(0deg);">
+          <img src="IMG-20251204-WA0001.jpg" alt="foto1">
+        </div>
+        <div class="carousel-item" style="transform: rotate(72deg) translateX( -150px) rotate(-72deg);">
+          <img src="IMG-20250831-WA0077.jpg" alt="foto2">
+        </div>
+        <div class="carousel-item" style="transform: rotate(144deg) translateX( -150px) rotate(-144deg);">
+          <img src="IMG-20251204-WA0004.jpg" alt="foto3">
+        </div>
+        <div class="carousel-item" style="transform: rotate(216deg) translateX( -150px) rotate(-216deg);">
+          <img src="IMG-20251204-WA0003.jpg" alt="foto4">
+        </div>
+        <div class="carousel-item" style="transform: rotate(288deg) translateX( -150px) rotate(-288deg);">
+          <img src="IMG-20251006-WA0105.jpg" alt="foto5">
+        </div>
+      </div>
+    </section>
 
     <div class="small-note">(Pulsa "Carrusel de feria" para activar la rotación)</div>
 
     <!-- mini galería -->
     <div class="mini-gallery" id="miniGallery" style="display:none;margin-top:22px">
-      <img src="images/IMG-20251204-WA0001.jpg" alt="m1">
-      <img src="images/IMG-20250831-WA0077.jpg" alt="m2">
-      <img src="images/IMG-20251204-WA0004.jpg" alt="m3">
-      <img src="images/IMG-20251204-WA0003.jpg" alt="m4">
-      <img src="images/IMG-20251006-WA0105.jpg" alt="m5">
+      <img src="IMG-20251204-WA0001.jpg" alt="m1">
+      <img src="IMG-20250831-WA0077.jpg" alt="m2">
+      <img src="IMG-20251204-WA0004.jpg" alt="m3">
+      <img src="IMG-20251204-WA0003.jpg" alt="m4">
+      <img src="IMG-20251006-WA0105.jpg" alt="m5">
     </div>
   </main>
 
