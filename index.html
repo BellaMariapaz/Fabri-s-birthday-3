@@ -1,157 +1,201 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para mi amor</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz cumpleaños — para mi amor</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(#ffdde8, #ffc2d1);
-      overflow-x: hidden;
-      color: #b3003c;
-      text-align: center;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap');
+    :root{
+      --rosa-1: #ffdfee;
+      --rosa-2: #ffc1da;
+      --fuerte: #ff1f5e;
+      --accent: #ff8fa3;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background: radial-gradient(circle at 10% 10%,var(--rosa-1),var(--rosa-2));
+      color:#4a1b2b;
+      -webkit-font-smoothing:antialiased;
+      text-align:center;
+      overflow-x:hidden;
     }
 
-    h1 {
-      margin-top: 50px;
-      font-size: 3rem;
-      color: #ff004c;
-      text-shadow: 0 0 10px #ff8fa3;
-    }
+    header{padding:36px 16px 6px}
+    h1{font-family:'Great Vibes',cursive;font-size:3.6rem;margin:0;color:var(--fuerte);text-shadow:0 8px 30px rgba(255,140,170,0.18)}
+    p.lead{margin:6px 0 18px;color:#7a2a47;font-weight:600}
 
-    .music-label {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 6px 12px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      border: 1px solid #ff99b8;
-    }
+    /* CONTROLES */
+    .controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+    .btn{background:linear-gradient(180deg,var(--fuerte),#ff4b7c);color:white;padding:12px 20px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(255,60,120,0.18);font-weight:600;transition:transform .18s ease,box-shadow .18s}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 18px 28px rgba(255,60,120,0.22)}
 
-    /* Carrusel */
-    .carousel {
-      width: 90%;
-      max-width: 500px;
-      margin: 40px auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(255, 0, 80, 0.3);
-    }
+    /* AREA CENTRAL */
+    main{max-width:980px;margin:22px auto;padding:8px}
 
-    .slides {
-      display: flex;
-      width: 500%;
-      animation: slide 25s infinite;
+    /* CARRUSEL 3D (caballitos) */
+    .carousel-wrap{display:flex;justify-content:center;align-items:center;margin:18px 0}
+    .carousel-3d{
+      width:380px;height:380px;position:relative;border-radius:50%;background:linear-gradient(180deg,#fff4fb,#ffe8f2);box-shadow:0 18px 50px rgba(255,0,120,0.12);overflow:visible;border:6px solid rgba(255,140,170,0.25)
     }
+    /* imágen central del carrusel: un caballito decorativo */
+    .carousel-3d .center-pony{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:170px;animation:levitar 3s ease-in-out infinite}
+    @keyframes levitar{0%{transform:translate(-50%,-46%)}50%{transform:translate(-50%,-54%)}100%{transform:translate(-50%,-46%)}}
 
-    .slides img {
-      width: 100%;
-      object-fit: cover;
-    }
+    /* fotos alrededor */
+    .carousel-item{position:absolute;left:50%;top:50%;transform-origin: -150px center;transition:transform .6s ease,filter .3s}
+    .carousel-item img{width:120px;height:120px;border-radius:16px;object-fit:cover;border:4px solid rgba(255,255,255,0.9);box-shadow:0 6px 20px rgba(0,0,0,0.18)}
 
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      20% { transform: translateX(0%); }
-      25% { transform: translateX(-100%); }
-      40% { transform: translateX(-100%); }
-      45% { transform: translateX(-200%); }
-      60% { transform: translateX(-200%); }
-      65% { transform: translateX(-300%); }
-      80% { transform: translateX(-300%); }
-      85% { transform: translateX(-400%); }
-      100% { transform: translateX(-400%); }
-    }
+    /* posiciónaremos 5 items en círculo con transform rotate */
 
-    /* Botón interactivo */
-    .btn-love {
-      margin-top: 20px;
-      background: #ff4d79;
-      color: white;
-      padding: 15px 25px;
-      border: none;
-      font-size: 1.2rem;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
-      transition: 0.3s;
-    }
+    /* controles visuales */
+    .small-note{font-size:0.85rem;color:#91294a;margin-top:12px}
 
-    .btn-love:hover {
-      transform: scale(1.1);
-      background:#ff1f5e;
-    }
+    /* CARTA POPUP */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:50}
+    .modal{background:white;border-radius:18px;padding:22px;max-width:520px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.35);transform:translateY(20px);opacity:0;transition:all .32s ease}
+    .modal.show{transform:translateY(0);opacity:1}
+    .modal h2{font-family:'Great Vibes',cursive;color:var(--fuerte);margin:4px 0 6px}
+    .modal p{color:#4c2b36;line-height:1.6}
+    .close-btn{background:transparent;border:0;font-weight:700;color:#b10045;position:absolute;right:14px;top:10px;font-size:1.1rem;cursor:pointer}
 
-    /* Corazones flotando */
-    .heart {
-      position: fixed;
-      font-size: 20px;
-      animation: float 4s linear infinite;
-      color: #ff3d6a;
-      opacity: 0.8;
-    }
+    /* GALERÍA pequeña */
+    .mini-gallery{display:flex;gap:12px;justify-content:center;margin-top:18px}
+    .mini-gallery img{width:92px;height:92px;object-fit:cover;border-radius:12px;border:3px solid rgba(255,255,255,0.9);box-shadow:0 6px 15px rgba(0,0,0,0.12);transition:transform .25s}
+    .mini-gallery img:hover{transform:translateY(-6px) scale(1.05)}
 
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-150px) scale(1.8); opacity: 0; }
-    }
+    /* SPAM TE AMO overlay */
+    .spam-overlay{position:fixed;inset:0;pointer-events:none}
+    .spam-heart{position:absolute;font-weight:800;color:var(--fuerte);text-shadow:0 2px 10px rgba(255,0,120,0.2);animation:popup 2.2s ease forwards}
+    @keyframes popup{0%{transform:scale(.4) translateY(0);opacity:0}50%{opacity:1}100%{transform:scale(1.4) translateY(-140px);opacity:0}}
 
+    /* música indicator */
+    .music-label{position:fixed;right:14px;bottom:12px;background:rgba(255,255,255,0.8);padding:7px 12px;border-radius:12px;color:var(--fuerte);font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+    /* responsive */
+    @media (max-width:640px){.carousel-3d{width:300px;height:300px}.carousel-item img{width:92px;height:92px}}
   </style>
 </head>
 <body>
+  <header>
+    <h1>✨ Feliz cumpleaños, mi amor ✨</h1>
+    <p class="lead">Hoy el mundo brilla más porque existes. Pulsa cada botón para ver sorpresas 💖</p>
+  </header>
 
-  <h1>Feliz cumpleaños, mi amor ❤️</h1>
+  <div class="controls">
+    <button class="btn" id="btnCarta">💌 Ver carta</button>
+    <button class="btn" id="btnGaleria">📸 Momentos</button>
+    <button class="btn" id="btnCarrusel">🎠 Carrusel de feria</button>
+    <button class="btn" id="btnToca">❤️ Toca aquí</button>
+  </div>
 
-  <!-- CARRUSEL REAL -->
-  <div class="carousel">
-    <div class="slides">
-      <img src="data:image/jpeg;base64,{{FOTO1}}" />
-      <img src="data:image/jpeg;base64,{{FOTO2}}" />
-      <img src="data:image/jpeg;base64,{{FOTO3}}" />
-      <img src="data:image/jpeg;base64,{{FOTO4}}" />
-      <img src="data:image/jpeg;base64,{{FOTO5}}" />
+  <main>
+    <!-- Carrusel 3D -->
+    <section class="carousel-wrap">
+      <div class="carousel-3d" id="carousel3d">
+        <!-- pony central decorativo -->
+        <img class="center-pony" src="https://i.imgur.com/7H1G4xT.png" alt="pony">
+        <!-- items (fotos) -->
+        <div class="carousel-item" style="transform: rotate(0deg) translateX( -150px) rotate(0deg);">
+          <img src="images/IMG-20251204-WA0001.jpg" alt="foto1">
+        </div>
+        <div class="carousel-item" style="transform: rotate(72deg) translateX( -150px) rotate(-72deg);">
+          <img src="images/IMG-20250831-WA0077.jpg" alt="foto2">
+        </div>
+        <div class="carousel-item" style="transform: rotate(144deg) translateX( -150px) rotate(-144deg);">
+          <img src="images/IMG-20251204-WA0004.jpg" alt="foto3">
+        </div>
+        <div class="carousel-item" style="transform: rotate(216deg) translateX( -150px) rotate(-216deg);">
+          <img src="images/IMG-20251204-WA0003.jpg" alt="foto4">
+        </div>
+        <div class="carousel-item" style="transform: rotate(288deg) translateX( -150px) rotate(-288deg);">
+          <img src="images/IMG-20251006-WA0105.jpg" alt="foto5">
+        </div>
+      </div>
+    </section>
+
+    <div class="small-note">(Pulsa "Carrusel de feria" para activar la rotación)</div>
+
+    <!-- mini galería -->
+    <div class="mini-gallery" id="miniGallery" style="display:none;margin-top:22px">
+      <img src="images/IMG-20251204-WA0001.jpg" alt="m1">
+      <img src="images/IMG-20250831-WA0077.jpg" alt="m2">
+      <img src="images/IMG-20251204-WA0004.jpg" alt="m3">
+      <img src="images/IMG-20251204-WA0003.jpg" alt="m4">
+      <img src="images/IMG-20251006-WA0105.jpg" alt="m5">
+    </div>
+  </main>
+
+  <!-- Modal Carta -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="close-btn" id="closeModal">✕</button>
+      <h2>Mi amor...</h2>
+      <p>Quería regalarte algo que se sienta solo nuestro. Cada día contigo es un suspiro de felicidad, una canción que no deja de sonar. Gracias por ser mi persona favorita. Te amo hoy y siempre. ❤️</p>
     </div>
   </div>
 
-  <button class="btn-love" onclick="spamLove()">Tócalo aquí 💗</button>
+  <!-- overlay para spam TE AMO -->
+  <div class="spam-overlay" id="spamOverlay"></div>
 
-  <div id="spam"></div>
+  <!-- Música (YouTube embed oculto para loop) -->
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/rexeYSFj6Fg?autoplay=1&loop=1&playlist=rexeYSFj6Fg&controls=0&rel=0&mute=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+  <div class="music-label">🎶 canción sonando...</div>
 
-  <!-- Música -->
-  <audio id="music" autoplay loop>
-    <source src="https://piped.video/download?video_id=rexeYSFj6Fg&format=audio" type="audio/mp3" />
-  </audio>
+  <script>
+    // animación: rotar carrusel cuando se activa
+    let carousel = document.getElementById('carousel3d');
+    let rotating = false; let rotationInterval;
 
-  <div class="music-label">canción sonando...</div>
-
-<script>
-  function spamLove() {
-    let container = document.getElementById("spam");
-    for (let i = 0; i < 35; i++) {
-      let msg = document.createElement("div");
-      msg.innerHTML = "TE AMO ❤️";
-      msg.style.fontSize = "" + (20 + Math.random()*20) + "px";
-      msg.style.marginTop = "10px";
-      container.appendChild(msg);
+    function startRotate(){
+      if(rotating) return; rotating=true;
+      let angle = 0;
+      rotationInterval = setInterval(()=>{
+        angle += 0.6; // velocidad
+        carousel.style.transform = 'rotate('+angle+'deg)';
+      },16);
     }
-  }
+    function stopRotate(){ rotating=false; clearInterval(rotationInterval); carousel.style.transform='rotate(0deg)'; }
 
-  // corazones flotando
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "%";
-    heart.style.bottom = "0px";
-    heart.style.fontSize = (15 + Math.random()*20) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }, 500);
-</script>
+    // botones
+    document.getElementById('btnCarrusel').addEventListener('click', ()=>{
+      if(!rotating) startRotate(); else stopRotate();
+    });
 
+    document.getElementById('btnGaleria').addEventListener('click', ()=>{
+      let g = document.getElementById('miniGallery');
+      g.style.display = g.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // modal carta
+    const modal = document.getElementById('modalBackdrop');
+    document.getElementById('btnCarta').addEventListener('click', ()=>{ modal.style.display='flex'; setTimeout(()=>document.querySelector('.modal').classList.add('show'),30); });
+    document.getElementById('closeModal').addEventListener('click', ()=>{ document.querySelector('.modal').classList.remove('show'); setTimeout(()=>modal.style.display='none',280); });
+
+    // spam te amo (overlay animado)
+    const spamOverlay = document.getElementById('spamOverlay');
+    document.getElementById('btnToca').addEventListener('click', ()=>{
+      for(let i=0;i<30;i++){
+        const d = document.createElement('div');
+        d.className='spam-heart';
+        d.style.left = (10 + Math.random()*80) + '%';
+        d.style.top = (20 + Math.random()*70) + '%';
+        d.style.fontSize = (14 + Math.random()*36) + 'px';
+        d.textContent = '💗 TE AMO 💗';
+        spamOverlay.appendChild(d);
+        setTimeout(()=>d.remove(),2200);
+      }
+    });
+
+    // accesibilidad: cerrar modal con ESC
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.getElementById('closeModal').click(); }});
+
+    // ligeras animaciones al inicio
+    window.addEventListener('load', ()=>{
+      document.querySelector('h1').style.transform='translateY(-6px)';
+    });
+  </script>
 </body>
 </html>
